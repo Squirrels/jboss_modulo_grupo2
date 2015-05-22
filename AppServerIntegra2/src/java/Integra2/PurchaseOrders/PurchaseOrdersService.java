@@ -7,11 +7,6 @@ package Integra2.PurchaseOrders;
 
 import Integra2.BasicUrls;
 import Integra2.HttpRequest;
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.net.URLConnection;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
