@@ -63,8 +63,10 @@ public class PurchaseOrdersService {
     @POST
     @Produces("application/json")
     @Path("/reject/{id}")
-    public Response rejectOrder(){
-        return null;
+    public Response rejectOrder(@PathParam("id") String orderId, PurchaseOrderRejection reason){
+        HttpRequest response = HttpRequest.post(REJECT_ORDER_URL + orderId).contentType("application/json")
+                .form("rechazo", reason.rechazo);
+        return Response.status(response.code()).entity(response.body()).build();
     }
     
     @POST
