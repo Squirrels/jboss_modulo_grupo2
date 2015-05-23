@@ -11,6 +11,7 @@ import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.core.Response;
 /**
  *
  * @author Guillermo
@@ -30,9 +31,8 @@ public class PurchaseOrdersService {
     @GET
     @Produces("application/json")
     @Path("/{id}")
-    public String getOrder(@PathParam("id") String orderId){
-        
+    public Response getOrder(@PathParam("id") String orderId){
         HttpRequest response = HttpRequest.get(GET_ORDER_URL + orderId).contentType("application/json");
-        return response.body();
+        return Response.status(response.code()).entity(response.body()).build();
     }
 }
