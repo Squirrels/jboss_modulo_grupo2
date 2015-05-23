@@ -54,8 +54,10 @@ public class PurchaseOrdersService {
     @POST
     @Produces("application/json")
     @Path("/accept/{id}")
-    public Response acceptOrder(){
-        return null;
+    public Response acceptOrder(@PathParam("id") String orderId){
+        HttpRequest response = HttpRequest.post(ACCEPT_ORDER_URL + orderId).contentType("application/json")
+                .form("","");
+        return Response.status(response.code()).entity(response.body()).build();
     }
     
     @POST
@@ -65,10 +67,13 @@ public class PurchaseOrdersService {
         return null;
     }
     
-    @DELETE
+    @POST
     @Produces("application/json")
-    @Path("/")
-    public Response cancelOrder(){
+    @Path("/{id}")
+    public Response cancelOrder(@PathParam("id") String orderId, PurchaseOrderCancellation reason){
+        /*HttpRequest response = HttpRequest.post(CANCEL_ORDER_URL + orderId).contentType("application/json")
+                .form("anulacion", reason.anulacion);
+        return Response.status(response.code()).entity(response.body()).build();*/
         return null;
     }
     
