@@ -15,23 +15,15 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
-import javax.ws.rs.client.Client;
-import javax.ws.rs.client.ClientBuilder;
-import javax.ws.rs.client.Invocation;
-import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import org.jboss.resteasy.client.ClientRequest;
-import org.jboss.resteasy.client.jaxrs.ResteasyClient;
-import org.jboss.resteasy.client.jaxrs.ResteasyClientBuilder;
 /**
  *
  * @author Guillermo
  */
 @Path("PurchaseOrders")
 public class PurchaseOrdersResource {
-    
-    //
     private static final String PUT_ORDER_URL = BasicUrls.PURCHASE_ORDER_SERVER + "/crear"; //PUT
     private static final String ACCEPT_ORDER_URL = BasicUrls.PURCHASE_ORDER_SERVER + "/recepcionar/"; //POST
     private static final String REJECT_ORDER_URL = BasicUrls.PURCHASE_ORDER_SERVER + "/rechazar/"; //POST
@@ -81,7 +73,7 @@ public class PurchaseOrdersResource {
     public Response cancelOrder(@PathParam("id") String orderId, PurchaseOrderCancellation reason) throws InterruptedException, ExecutionException, Exception{
         /*HttpRequest response = HttpRequest.delete(CANCEL_ORDER_URL + orderId).contentType("application/json")
                 .form("anulacion", reason.anulacion);
-        return Response.status(response.code()).entity(response.body()).build();*/
+        return Response.status(response.code()).entity(response.body()).build();*/ //TODO: refactor
         ClientRequest request = new ClientRequest(CANCEL_ORDER_URL + orderId);
         request.accept("application/json");
         request.header("Content-Type", "application/json");

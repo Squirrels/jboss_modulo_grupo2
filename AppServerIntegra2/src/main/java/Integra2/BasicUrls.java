@@ -10,7 +10,7 @@ package Integra2;
  * @author Guillermo
  */
 public class BasicUrls {
-    public static final String PURCHASE_ORDER_SERVER = "http://chiri.ing.puc.cl/atenea"; //http://localhost:83
+    public static final String PURCHASE_ORDER_SERVER = "http://localhost:83";
     public static final String BANK_SERVER = "http://chiri.ing.puc.cl/apolo"; //http://localhost:84
     public static final String INVOICE_SERVER = "http://chiri.ing.puc.cl/zeuz"; //http://localhost:85
 }
