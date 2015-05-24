@@ -6,11 +6,13 @@
 package Integra2.Bank;
 
 import Integra2.Bank.Account.BadParametersException;
+import Integra2.Bank.Account.Cartola;
 import Integra2.Bank.Account.Cuenta;
 import Integra2.Bank.Account.CuentaBanco;
 import Integra2.Bank.Account.CuentaBancoArray;
 import Integra2.Bank.Account.Cuenta_Service;
 import Integra2.Bank.Account.ErrorException;
+import Integra2.Bank.Account.GetCartola;
 import Integra2.Bank.Transaction.CrearTransaccion;
 import Integra2.Bank.Transaction.Transaccion;
 import Integra2.Bank.Transaction.Trx;
@@ -54,6 +56,34 @@ public class BankResource {
         } 
     }
 
+    @POST
+    @Produces("application/json")
+    @Path("/cartola")
+    public Response getCartola(ClassGetCartola CgetCartola) throws BadParametersException, ErrorException{
+        
+        try { // Call Web Service Operation
+            Cuenta_Service service = new Cuenta_Service();
+            Cuenta port = service.getCuentaPort();
+            // TODO initialize WS operation arguments here
+            GetCartola cartola = new GetCartola();
+            cartola.setInicio(CgetCartola.inicio);
+            cartola.setFin(CgetCartola.fin);
+            cartola.setId(CgetCartola.id);
+            cartola.setLimit(CgetCartola.limit);
+
+            // TODO process result here
+            Cartola result = port.getCartola(cartola);
+            return Response.ok("Result = " + result, MediaType.TEXT_PLAIN).build();
+            
+        } catch (Exception ex) {
+            // TODO handle custom exceptions here
+        }
+        
+        return Response.status(501).build();
+        
+    }
+    
+    
     @PUT
     @Produces("application/json")
     @Path("/Transactions/")
@@ -79,5 +109,7 @@ public class BankResource {
         
         return Response.status(501).build();
 
-    }
+    
+        
+}
 }
