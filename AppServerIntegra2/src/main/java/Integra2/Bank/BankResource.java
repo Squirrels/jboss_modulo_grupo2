@@ -18,6 +18,7 @@ import Integra2.Bank.Transaction.Transaccion;
 import Integra2.Bank.Transaction.TransaccionArray;
 import Integra2.Bank.Transaction.Trx;
 import Integra2.Bank.Transaction.Trx_Service;
+import java.util.Iterator;
 import java.util.List;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -65,22 +66,53 @@ public class BankResource {
     @POST
     @Produces("application/json")
     @Path("/AccountStatement/")
-    public Response getCartola(ClassGetCartola CgetCartola) throws BadParametersException, ErrorException{
+    public Response getCartola(GetAccountStatement accountStatementData) throws BadParametersException, ErrorException{
         
         try { // Call Web Service Operation
             Cuenta_Service service = new Cuenta_Service();
             Cuenta port = service.getCuentaPort();
             // TODO initialize WS operation arguments here
             GetCartola cartola = new GetCartola();
-            cartola.setInicio(CgetCartola.inicio);
-            cartola.setFin(CgetCartola.fin);
-            cartola.setId(CgetCartola.id);
-            cartola.setLimit(CgetCartola.limit);
+            cartola.setInicio(accountStatementData.inicio);
+            cartola.setFin(accountStatementData.fin);
+            cartola.setId(accountStatementData.id);
+            
+            //Optional Limit
+            if(accountStatementData.limit != -1)
+                cartola.setLimit(accountStatementData.limit);
 
             // TODO process result here
             Cartola result = port.getCartola(cartola);
             
-            return Response.ok("Result = " + result, MediaType.TEXT_PLAIN).build();
+            List<Integra2.Bank.Account.Transaccion> transactions = result.getTransacciones();
+            String json = "";
+            Iterator<Integra2.Bank.Account.Transaccion> iterator = transactions.iterator();
+            
+            int i = 0;
+            int size = transactions.size();
+            while(iterator.hasNext()){
+                Integra2.Bank.Account.Transaccion transaction = iterator.next();
+                if(transaction.getOrigen().compareTo(accountStatementData.id) == 0
+                        ||  transaction.getDestino().compareTo(accountStatementData.id) == 0){
+                    String id = transaction.getId();
+                    String from = transaction.getOrigen();
+                    String to = transaction.getDestino();
+                    int amount = transaction.getMonto();
+                    String date = transaction.getUpdatedAt();
+                    String v = transaction.getV();
+                    
+                    json = json + "{\"id\":\"" + id + "\","
+                    + "\"origen\":\"" + from + "\","
+                    + "\"destino\":\"" + to + "\","
+                    + "\"monto\":" + amount + ","
+                    + "\"updatedAt\":\"" + date + "\","
+                    + "\"v\":\"" + v + "\""
+                    +"},";
+                }
+            }
+            json = json.substring(0, json.length()-1);
+            json = "\"transacciones\":[" + json + "]";
+            return Response.ok(json, MediaType.APPLICATION_JSON).build();
             
         } catch (Exception ex) {
             // TODO handle custom exceptions here
