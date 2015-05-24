@@ -9,15 +9,13 @@ package Integra2.Invoices;
  *
  * @author Andres
  */
-public class InvoiceRejection {
+public class InvoicePayment {
     
     public String factura;
-    public String rechazo;
     
-    public InvoiceRejection() {};
+    public InvoicePayment(){}
     
-    public InvoiceRejection(String factura, String rechazo){
+    public InvoicePayment(String factura){
         this.factura = factura;
-        this.rechazo = rechazo;
     }
 }

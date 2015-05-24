@@ -52,16 +52,18 @@ public class InvoicesResource {
     @POST
     @Produces("application/json")
     @Path("/pay/")
-    public Response payInvoice(String invoiceId){
-        HttpRequest response = HttpRequest.get(PAY_INVOICE_URL + invoiceId).contentType("application/json");
+    public Response payInvoice(InvoicePayment payment){
+        HttpRequest response = HttpRequest.get(PAY_INVOICE_URL).contentType("application/json")
+                .form("factura", payment.factura);
         return Response.status(response.code()).entity(response.body()).build();
     }
     
     @POST
     @Produces("application/json")
     @Path("/reject/")
-    public Response rejectInvoice(String invoiceId, InvoiceRejection reason){
-        HttpRequest response = HttpRequest.post(REJECT_INVOICE_URL + invoiceId).contentType("application/json")
+    public Response rejectInvoice(InvoiceRejection reason){
+        HttpRequest response = HttpRequest.post(REJECT_INVOICE_URL).contentType("application/json")
+                .form("factura", reason.factura)
                 .form("rechazo", reason.rechazo);
         return Response.status(response.code()).entity(response.body()).build();
     }
@@ -69,8 +71,9 @@ public class InvoicesResource {
     @POST
     @Produces("application/json")
     @Path("/cancel/")
-    public Response cancelInvoice(String invoiceId, InvoiceCancellation reason){
-        HttpRequest response = HttpRequest.post(CANCEL_INVOICE_URL + invoiceId).contentType("application/json")
+    public Response cancelInvoice(InvoiceCancellation reason){
+        HttpRequest response = HttpRequest.post(CANCEL_INVOICE_URL).contentType("application/json")
+                .form("factura", reason.factura)
                 .form("anulacion", reason.anulacion);
         return Response.status(response.code()).entity(response.body()).build();
     }

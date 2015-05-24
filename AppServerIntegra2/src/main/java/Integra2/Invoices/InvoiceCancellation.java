@@ -11,11 +11,13 @@ package Integra2.Invoices;
  */
 public class InvoiceCancellation {
     
+    public String factura;
     public String anulacion;
     
     public InvoiceCancellation(){}
     
-    public InvoiceCancellation(String anulacion){
+    public InvoiceCancellation(String factura, String anulacion){
+        this.factura = factura;
         this.anulacion = anulacion;
     }
 }
