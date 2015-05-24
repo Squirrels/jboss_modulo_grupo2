@@ -36,14 +36,22 @@ public class BankResource {
     @Produces("application/json")
     @Path("/{id}")
     public Response getAccount(@PathParam("id") String accountId) throws BadParametersException, ErrorException{
-        Cuenta_Service accountService = new Cuenta_Service();
-        Cuenta account = accountService.getCuentaPort();
-        CuentaBancoArray accountArray = account.getCuenta(accountId);
-        List<CuentaBanco> accountList = accountArray.getItem();
-        CuentaBanco bankAccount = accountList.get(0);
-        String json = "{\"saldo\":" + bankAccount.getSaldo() + ",\n\"grupo\":\"" + bankAccount.getGrupo() + "\"}";
-        return Response.ok(json, MediaType.APPLICATION_JSON).build();
         
+        try { // Call Web Service Operation
+            Cuenta_Service service = new Cuenta_Service();
+            Cuenta port = service.getCuentaPort();
+            
+            // TODO process result here
+            CuentaBancoArray result = port.getCuenta(accountId);
+            List<CuentaBanco> accountList = result.getItem();
+            CuentaBanco bankAccount = accountList.get(0);
+            String json = "{\"saldo\":" + bankAccount.getSaldo() + "}";
+            return Response.ok(json, MediaType.APPLICATION_JSON).build();
+        } catch (Exception ex) {
+            // TODO handle custom exceptions here
+            String json = "{\"error\":\"" + ex.toString() + "\"}";
+            return Response.status(501).tag(json).type(MediaType.APPLICATION_JSON).build();
+        } 
     }
 
     @PUT
