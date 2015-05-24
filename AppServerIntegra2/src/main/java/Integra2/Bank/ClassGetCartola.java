@@ -15,6 +15,7 @@ public class ClassGetCartola {
     public String id;
     public int limit;
     
+    public ClassGetCartola(){}
     
     public ClassGetCartola(float inicio, float fin, String id, int limit){
         this.inicio = inicio;
