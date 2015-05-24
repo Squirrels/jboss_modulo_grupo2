@@ -14,6 +14,8 @@ public class CreateTransaction {
     public String origen;
     public int monto;
     
+    public CreateTransaction(){}
+    
     public CreateTransaction(String destino, String origen, int monto){
         this.destino = destino;
         this.origen = origen;

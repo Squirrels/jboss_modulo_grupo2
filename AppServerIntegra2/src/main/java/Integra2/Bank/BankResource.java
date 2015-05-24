@@ -56,7 +56,7 @@ public class BankResource {
 
     @PUT
     @Produces("application/json")
-    @Path("/Transacions/")
+    @Path("/Transactions/")
     public Response createTransaction(CreateTransaction createTransaction){
         
         try { // Call Web Service Operation
