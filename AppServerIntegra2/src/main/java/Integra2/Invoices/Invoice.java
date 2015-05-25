@@ -10,11 +10,11 @@ package Integra2.Invoices;
  * @author Andres
  */
 public class Invoice {
-    public String order;
+    public String oc;
     
     public Invoice() {}
     
-    public Invoice(String order){
-        this.order = order;
+    public Invoice(String oc){
+        this.oc = oc;
     }
 }

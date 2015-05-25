@@ -33,10 +33,10 @@ public class InvoicesResource {
 
     @PUT
     @Produces("application/json")
-    @Path("/{id}")
+    @Path("/")
     public Response issueInvoice(Invoice invoice){
         HttpRequest response = HttpRequest.put(ISSUE_INVOICE_URL).contentType("application/json")
-                .form("order", invoice.order);
+                .form("oc", invoice.oc);
         
         return Response.status(response.code()).entity(response.body()).build();
     }
