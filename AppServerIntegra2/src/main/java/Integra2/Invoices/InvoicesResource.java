@@ -54,7 +54,7 @@ public class InvoicesResource {
     @Path("/pay/")
     public Response payInvoice(InvoicePayment payment){
         HttpRequest response = HttpRequest.get(PAY_INVOICE_URL).contentType("application/json")
-                .form("factura", payment.factura);
+                .form("id", payment.id);
         return Response.status(response.code()).entity(response.body()).build();
     }
     

@@ -11,11 +11,11 @@ package Integra2.Invoices;
  */
 public class InvoicePayment {
     
-    public String factura;
+    public String id;
     
     public InvoicePayment(){}
     
-    public InvoicePayment(String factura){
-        this.factura = factura;
+    public InvoicePayment(String id){
+        this.id = id;
     }
 }
