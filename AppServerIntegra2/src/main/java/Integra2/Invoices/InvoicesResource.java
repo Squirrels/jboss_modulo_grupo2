@@ -73,8 +73,8 @@ public class InvoicesResource {
     @Path("/cancel/")
     public Response cancelInvoice(InvoiceCancellation reason){
         HttpRequest response = HttpRequest.post(CANCEL_INVOICE_URL).contentType("application/json")
-                .form("factura", reason.factura)
-                .form("anulacion", reason.anulacion);
+                .form("id", reason.id)
+                .form("motivo", reason.motivo);
         return Response.status(response.code()).entity(response.body()).build();
     }
 }
