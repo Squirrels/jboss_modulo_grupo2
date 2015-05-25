@@ -25,8 +25,8 @@ import org.jboss.resteasy.client.ClientRequest;
  */
 @Path("Invoices")
 public class InvoicesResource {
-    private static final String ISSUE_INVOICE_URL = BasicUrls.INVOICE_SERVER; //PUT
-    private static final String GET_INVOICE_URL = BasicUrls.INVOICE_SERVER; //GET
+    private static final String ISSUE_INVOICE_URL = BasicUrls.INVOICE_SERVER + "/"; //PUT
+    private static final String GET_INVOICE_URL = BasicUrls.INVOICE_SERVER + "/"; //GET
     private static final String PAY_INVOICE_URL = BasicUrls.INVOICE_SERVER + "/pay/"; //POST
     private static final String REJECT_INVOICE_URL = BasicUrls.INVOICE_SERVER + "/reject/"; //POST
     private static final String CANCEL_INVOICE_URL = BasicUrls.INVOICE_SERVER + "/cancel/"; //POST
