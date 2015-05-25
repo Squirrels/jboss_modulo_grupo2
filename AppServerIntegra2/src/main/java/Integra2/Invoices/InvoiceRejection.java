@@ -11,13 +11,13 @@ package Integra2.Invoices;
  */
 public class InvoiceRejection {
     
-    public String factura;
-    public String rechazo;
+    public String id;
+    public String motivo;
     
     public InvoiceRejection() {};
     
-    public InvoiceRejection(String factura, String rechazo){
-        this.factura = factura;
-        this.rechazo = rechazo;
+    public InvoiceRejection(String id, String motivo){
+        this.id = id;
+        this.motivo = motivo;
     }
 }
