@@ -4,7 +4,7 @@
 
     <groupId>cl.integra2</groupId>
     <artifactId>AppServerIntegra2</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>v1.0</version>
     <packaging>war</packaging>
 
     <name>AppServerIntegra2</name>
@@ -53,6 +53,16 @@
                 <version>2.1.1</version>
                 <configuration>
                     <failOnMissingWebXml>false</failOnMissingWebXml>
+                    <webResources>
+                        <resource>
+                            <directory>src</directory>
+                            <targetPath>WEB-INF</targetPath>
+                            <includes>
+                                <include>jax-ws-catalog.xml</include>
+                                <include>wsdl/**</include>
+                            </includes>
+                        </resource>
+                    </webResources>
                 </configuration>
             </plugin>
             <plugin>
@@ -79,6 +89,57 @@
                         </configuration>
                     </execution>
                 </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.jvnet.jax-ws-commons</groupId>
+                <artifactId>jaxws-maven-plugin</artifactId>
+                <version>2.3</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>wsimport</goal>
+                        </goals>
+                        <configuration>
+                            <wsdlFiles>
+                                <wsdlFile>chiri.ing.puc.cl_8080/Banco/Cuenta.wsdl</wsdlFile>
+                            </wsdlFiles>
+                            <packageName>Integra2.Bank.Account</packageName>
+                            <wsdlLocation>http://chiri.ing.puc.cl:8080/Banco/Cuenta?wsdl</wsdlLocation>
+                            <staleFile>${project.build.directory}/jaxws/stale/Cuenta.stale</staleFile>
+                        </configuration>
+                        <id>wsimport-generate-Cuenta</id>
+                        <phase>generate-sources</phase>
+                    </execution>
+                    <execution>
+                        <goals>
+                            <goal>wsimport</goal>
+                        </goals>
+                        <configuration>
+                            <wsdlFiles>
+                                <wsdlFile>chiri.ing.puc.cl_8080/Banco/Trx.wsdl</wsdlFile>
+                            </wsdlFiles>
+                            <packageName>Integra2.Bank.Transaction</packageName>
+                            <wsdlLocation>http://chiri.ing.puc.cl:8080/Banco/Trx?wsdl</wsdlLocation>
+                            <staleFile>${project.build.directory}/jaxws/stale/Trx.stale</staleFile>
+                        </configuration>
+                        <id>wsimport-generate-Trx</id>
+                        <phase>generate-sources</phase>
+                    </execution>
+                </executions>
+                <dependencies>
+                    <dependency>
+                        <groupId>javax.xml</groupId>
+                        <artifactId>webservices-api</artifactId>
+                        <version>2.0</version>
+                    </dependency>
+                </dependencies>
+                <configuration>
+                    <sourceDestDir>${project.build.directory}/generated-sources/jaxws-wsimport</sourceDestDir>
+                    <xnocompile>true</xnocompile>
+                    <verbose>true</verbose>
+                    <extension>true</extension>
+                    <catalog>${basedir}/src/jax-ws-catalog.xml</catalog>
+                </configuration>
             </plugin>
         </plugins>
     </build>
