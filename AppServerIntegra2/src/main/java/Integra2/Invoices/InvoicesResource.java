@@ -51,7 +51,7 @@ public class InvoicesResource {
     
     @POST
     @Produces("application/json")
-    @Path("/pay/")
+    @Path("/Pay/")
     public Response payInvoice(InvoicePayment payment){
         HttpRequest response = HttpRequest.get(PAY_INVOICE_URL).contentType("application/json")
                 .form("id", payment.id);
@@ -60,7 +60,7 @@ public class InvoicesResource {
     
     @POST
     @Produces("application/json")
-    @Path("/reject/")
+    @Path("/Reject/")
     public Response rejectInvoice(InvoiceRejection reason){
         HttpRequest response = HttpRequest.post(REJECT_INVOICE_URL).contentType("application/json")
                 .form("id", reason.id)
@@ -70,7 +70,7 @@ public class InvoicesResource {
     
     @POST
     @Produces("application/json")
-    @Path("/cancel/")
+    @Path("/Cancel/")
     public Response cancelInvoice(InvoiceCancellation reason){
         HttpRequest response = HttpRequest.post(CANCEL_INVOICE_URL).contentType("application/json")
                 .form("id", reason.id)
