@@ -3,12 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Integra2.Bank;
+package Integra2.Odoo;
+
+import javax.ws.rs.Path;
 
 /**
  *
  * @author Guillermo
  */
-public class BankService {
+@Path("Odoo")
+public class OdooResource {
     
 }

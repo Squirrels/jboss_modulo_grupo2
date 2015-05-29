@@ -3,12 +3,19 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Integra2.PurchaseOrders;
+package Integra2.Invoices;
 
 /**
  *
- * @author Guillermo
+ * @author Andres
  */
-public class PurchaseOrdersService {
+public class InvoicePayment {
     
+    public String id;
+    
+    public InvoicePayment(){}
+    
+    public InvoicePayment(String id){
+        this.id = id;
+    }
 }

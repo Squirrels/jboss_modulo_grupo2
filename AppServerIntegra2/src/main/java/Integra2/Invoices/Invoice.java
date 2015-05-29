@@ -7,8 +7,14 @@ package Integra2.Invoices;
 
 /**
  *
- * @author Guillermo
+ * @author Andres
  */
-public class InvoicesService {
+public class Invoice {
+    public String oc;
     
+    public Invoice() {}
+    
+    public Invoice(String oc){
+        this.oc = oc;
+    }
 }
