@@ -51,7 +51,7 @@ public class PurchaseOrdersResource {
     
     @POST
     @Produces("application/json")
-    @Path("/accept/{id}")
+    @Path("/Accept/{id}")
     public Response acceptOrder(@PathParam("id") String orderId){
         HttpRequest response = HttpRequest.post(ACCEPT_ORDER_URL + orderId).contentType("application/json")
                 .form("","");
@@ -60,7 +60,7 @@ public class PurchaseOrdersResource {
     
     @POST
     @Produces("application/json")
-    @Path("/reject/{id}")
+    @Path("/Reject/{id}")
     public Response rejectOrder(@PathParam("id") String orderId, PurchaseOrderRejection reason){
         HttpRequest response = HttpRequest.post(REJECT_ORDER_URL + orderId).contentType("application/json")
                 .form("rechazo", reason.rechazo);
