@@ -38,7 +38,7 @@ public class BankResource {
     
     @GET
     @Produces("application/json")
-    @Path("/Account/{id}")
+    @Path("/Accounts/{id}")
     public Response getAccount(@PathParam("id") String accountId) throws BadParametersException, ErrorException{
         
         try { // Call Web Service Operation
@@ -65,7 +65,7 @@ public class BankResource {
 
     @POST
     @Produces("application/json")
-    @Path("/AccountStatement/")
+    @Path("/AccountStatements/")
     public Response getCartola(GetAccountStatement accountStatementData) throws BadParametersException, ErrorException{
         
         try { // Call Web Service Operation
@@ -111,7 +111,7 @@ public class BankResource {
                 }
             }
             json = json.substring(0, json.length()-1);
-            json = "\"transacciones\":[" + json + "]";
+            json = "{\"transacciones\":[" + json + "]}";
             return Response.ok(json, MediaType.APPLICATION_JSON).build();
             
         } catch (Exception ex) {
