@@ -59,8 +59,8 @@
   <xs:element name="Error" type="tns:Error"/>
   <xs:complexType name="Error">
     <xs:sequence>
-      <xs:element name="eRROR_CODE" nillable="true" type="xs:int"/>
       <xs:element name="httpCode" nillable="true" type="xs:int"/>
+      <xs:element name="eRROR_CODE" nillable="true" type="xs:int"/>
       <xs:element name="description" nillable="true" type="xs:string"/>
     </xs:sequence>
   </xs:complexType>
@@ -147,7 +147,7 @@
   </wsdl:binding>
   <wsdl:service name="Cuenta">
     <wsdl:port binding="tns:CuentaSoapBinding" name="CuentaPort">
-      <soap:address location="http://moyas.ing.puc.cl:8080/Banco/Cuenta"/>
+      <soap:address location="http://chiri.ing.puc.cl:8080/Banco/Cuenta"/>
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>

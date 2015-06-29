@@ -101,13 +101,13 @@
                         </goals>
                         <configuration>
                             <wsdlFiles>
-                                <wsdlFile>moyas.ing.puc.cl_8080/Banco/Cuenta.wsdl</wsdlFile>
+                                <wsdlFile>chiri.ing.puc.cl_8080/Banco/Trx.wsdl</wsdlFile>
                             </wsdlFiles>
-                            <packageName>Integra2.Bank.Account</packageName>
-                            <wsdlLocation>http://moyas.ing.puc.cl:8080/Banco/Cuenta?wsdl</wsdlLocation>
-                            <staleFile>${project.build.directory}/jaxws/stale/Cuenta.stale</staleFile>
+                            <packageName>Integra2.Bank.Transaction</packageName>
+                            <wsdlLocation>http://chiri.ing.puc.cl:8080/Banco/Trx?wsdl</wsdlLocation>
+                            <staleFile>${project.build.directory}/jaxws/stale/Trx.stale</staleFile>
                         </configuration>
-                        <id>wsimport-generate-Cuenta</id>
+                        <id>wsimport-generate-Trx</id>
                         <phase>generate-sources</phase>
                     </execution>
                     <execution>
@@ -116,13 +116,13 @@
                         </goals>
                         <configuration>
                             <wsdlFiles>
-                                <wsdlFile>moyas.ing.puc.cl_8080/Banco/Trx.wsdl</wsdlFile>
+                                <wsdlFile>chiri.ing.puc.cl_8080/Banco/Cuenta.wsdl</wsdlFile>
                             </wsdlFiles>
-                            <packageName>Integra2.Bank.Transaction</packageName>
-                            <wsdlLocation>http://moyas.ing.puc.cl:8080/Banco/Trx?wsdl</wsdlLocation>
-                            <staleFile>${project.build.directory}/jaxws/stale/Trx_1.stale</staleFile>
+                            <packageName>Integra2.Bank.Account</packageName>
+                            <wsdlLocation>http://chiri.ing.puc.cl:8080/Banco/Cuenta?wsdl</wsdlLocation>
+                            <staleFile>${project.build.directory}/jaxws/stale/Cuenta.stale</staleFile>
                         </configuration>
-                        <id>wsimport-generate-Trx_1</id>
+                        <id>wsimport-generate-Cuenta</id>
                         <phase>generate-sources</phase>
                     </execution>
                 </executions>

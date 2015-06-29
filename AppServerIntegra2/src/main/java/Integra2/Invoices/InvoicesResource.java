@@ -30,6 +30,7 @@ public class InvoicesResource {
     private static final String PAY_INVOICE_URL = BasicUrls.INVOICE_SERVER + "/pay/"; //POST
     private static final String REJECT_INVOICE_URL = BasicUrls.INVOICE_SERVER + "/reject/"; //POST
     private static final String CANCEL_INVOICE_URL = BasicUrls.INVOICE_SERVER + "/cancel/"; //POST
+    private static final String CREATE_TICKET_URL = BasicUrls.INVOICE_SERVER + "/boleta/"; //PUT
 
     @PUT
     @Produces("application/json")
@@ -75,6 +76,17 @@ public class InvoicesResource {
         HttpRequest response = HttpRequest.post(CANCEL_INVOICE_URL).contentType("application/json")
                 .form("id", reason.id)
                 .form("motivo", reason.motivo);
+        return Response.status(response.code()).entity(response.body()).build();
+    }
+    
+    @PUT
+    @Produces("application/json")
+    @Path("/Ticket/")
+    public Response createTicket(Ticket ticket){
+        HttpRequest response = HttpRequest.put(CREATE_TICKET_URL).contentType("application/json")
+                .form("proveedor", ticket.proveedor)
+                .form("cliente", ticket.cliente)
+                .form("total", ticket.total);
         return Response.status(response.code()).entity(response.body()).build();
     }
 }
