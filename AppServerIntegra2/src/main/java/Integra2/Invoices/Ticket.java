@@ -10,8 +10,8 @@ package Integra2.Invoices;
  * @author Guillermo
  */
 public class Ticket {
-    public String proveedor = "556489daefb3d7030091baab"; //Desarrollo
-    //public String proveedor = "55648ad2f89fed0300524ff6"; //Produccion
+    //public String proveedor = "556489daefb3d7030091baab"; //Desarrollo
+    public String proveedor = "55648ad2f89fed0300524ff6"; //Produccion
     public String cliente;
     public int total;
     
